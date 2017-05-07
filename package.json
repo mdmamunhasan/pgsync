@@ -9,6 +9,7 @@
   "author": "mamunthecoder@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "pg": "^6.1.5"
+    "pg": "^6.1.5",
+    "kafka-node": "^1.6.1"
   }
 }
