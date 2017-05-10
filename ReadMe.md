@@ -2,6 +2,7 @@
 
 1. NodeJs
 2. PostgreSql
+3. Apache Kafka
 
 ## Installation
 
