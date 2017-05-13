@@ -49,6 +49,6 @@
 
     `./sbin/start-slave.sh [host:port]`
     
-8. Start Processing
+8. Start Stream Processing
 
-    `python consumer.py`
+    `./consumer.sh`
