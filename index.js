@@ -14,5 +14,6 @@ pg.connect("postgres://postgres:root@127.0.0.1:5432/db_local", function (err, cl
             console.log("-========-");
         }
     });
+
     client.query("LISTEN table_update");
 });
