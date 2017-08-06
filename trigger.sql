@@ -12,14 +12,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
 DROP TRIGGER commissions_notify_insert ON commissions;
 DROP TRIGGER commissions_notify_update ON commissions;
 DROP TRIGGER commissions_notify_delete ON commissions;
 CREATE TRIGGER commissions_notify_insert AFTER INSERT ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER commissions_notify_update AFTER UPDATE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER commissions_notify_delete AFTER DELETE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
-
 
 DROP TRIGGER retailers_notify_insert ON retailers;
 DROP TRIGGER retailers_notify_update ON retailers;
@@ -28,7 +26,6 @@ CREATE TRIGGER retailers_notify_insert AFTER INSERT ON retailers FOR EACH ROW EX
 CREATE TRIGGER retailers_notify_update AFTER UPDATE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER retailers_notify_delete AFTER DELETE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
-
 DROP TRIGGER activities_notify_insert ON activities;
 DROP TRIGGER activities_notify_update ON activities;
 DROP TRIGGER activities_notify_delete ON activities;
@@ -36,14 +33,25 @@ CREATE TRIGGER activities_notify_insert AFTER INSERT ON activities FOR EACH ROW 
 CREATE TRIGGER activities_notify_update AFTER UPDATE ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER activities_notify_delete AFTER DELETE ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
-
+DROP TRIGGER age_group_notify_insert ON age_group;
 DROP TRIGGER age_group_notify_update ON age_group;
+DROP TRIGGER age_group_notify_delete ON age_group;
+CREATE TRIGGER age_group_notify_insert AFTER INSERT ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER age_group_notify_update AFTER UPDATE ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER age_group_notify_delete AFTER DELETE ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER api_access_notify_insert ON members;
+DROP TRIGGER api_access_notify_update ON members;
+DROP TRIGGER api_access_notify_delete ON members;
 CREATE TRIGGER api_access_notify_insert AFTER INSERT ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER api_access_notify_update AFTER UPDATE ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER api_access_notify_delete AFTER DELETE ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER msisdns_notify_insert ON msisdns;
+DROP TRIGGER msisdns_notify_update ON msisdns;
 DROP TRIGGER msisdns_notify_delete ON msisdns;
+CREATE TRIGGER msisdns_notify_insert AFTER INSERT ON msisdns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER msisdns_notify_update AFTER UPDATE ON msisdns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER msisdns_notify_delete AFTER DELETE ON msisdns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER business_subscribers_notify_update ON business_subscribers;
