@@ -12,27 +12,30 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
 DROP TRIGGER commissions_notify_insert ON commissions;
-CREATE TRIGGER commissions_notify_insert AFTER INSERT ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
-
 DROP TRIGGER commissions_notify_update ON commissions;
-CREATE TRIGGER commissions_notify_update AFTER UPDATE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
-
 DROP TRIGGER commissions_notify_delete ON commissions;
+CREATE TRIGGER commissions_notify_insert AFTER INSERT ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER commissions_notify_update AFTER UPDATE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER commissions_notify_delete AFTER DELETE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+
 DROP TRIGGER retailers_notify_insert ON retailers;
-CREATE TRIGGER retailers_notify_insert AFTER INSERT ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
-
 DROP TRIGGER retailers_notify_update ON retailers;
-CREATE TRIGGER retailers_notify_update AFTER UPDATE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
-
 DROP TRIGGER retailers_notify_delete ON retailers;
+CREATE TRIGGER retailers_notify_insert AFTER INSERT ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER retailers_notify_update AFTER UPDATE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER retailers_notify_delete AFTER DELETE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 
+DROP TRIGGER activities_notify_insert ON activities;
+DROP TRIGGER activities_notify_update ON activities;
 DROP TRIGGER activities_notify_delete ON activities;
+CREATE TRIGGER activities_notify_insert AFTER INSERT ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER activities_notify_update AFTER UPDATE ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER activities_notify_delete AFTER DELETE ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
 
 DROP TRIGGER age_group_notify_update ON age_group;
 CREATE TRIGGER age_group_notify_update AFTER UPDATE ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
