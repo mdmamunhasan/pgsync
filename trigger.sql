@@ -15,6 +15,12 @@ $$ LANGUAGE plpgsql;
 DROP TRIGGER commissions_notify_update ON commissions;
 CREATE TRIGGER commissions_notify_update AFTER UPDATE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER commissions_notify_update ON commissions;
+CREATE TRIGGER commissions_notify_insert AFTER INSERT ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER commissions_notify_update ON commissions;
+CREATE TRIGGER commissions_notify_delete AFTER DELETE ON commissions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
 DROP TRIGGER retailers_notify_insert ON retailers;
 CREATE TRIGGER retailers_notify_insert AFTER INSERT ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
