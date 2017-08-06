@@ -92,3 +92,30 @@ CREATE TRIGGER payment_methods_notify_insert AFTER INSERT ON payment_methods FOR
 
 DROP TRIGGER profiles_notify_delete ON profiles;
 CREATE TRIGGER profiles_notify_delete AFTER DELETE ON profiles FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER registration_summary_notify_delete ON registration_summary;
+CREATE TRIGGER registration_summary_notify_delete AFTER DELETE ON registration_summary FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER retailer_invites_notify_delete ON retailer_invites;
+CREATE TRIGGER retailer_invites_notify_delete AFTER DELETE ON retailer_invites FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER transactions_notify_update ON transactions;
+CREATE TRIGGER transactions_notify_update AFTER UPDATE ON transactions FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER sms_log_notify_insert ON sms_log;
+CREATE TRIGGER sms_log_notify_insert AFTER INSERT ON sms_log FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER subscription_history_notify_delete ON subscription_history;
+CREATE TRIGGER subscription_history_notify_delete AFTER DELETE ON subscription_history FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER th_internal_members_notify_delete ON th_internal_members;
+CREATE TRIGGER th_internal_members_notify_delete AFTER DELETE ON th_internal_members FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER tonic_plus_history_notify_update ON tonic_plus_history;
+CREATE TRIGGER tonic_plus_history_notify_update AFTER UPDATE ON tonic_plus_history FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER usage_logs_notify_insert ON usage_logs;
+CREATE TRIGGER usage_logs_notify_insert AFTER INSERT ON usage_logs FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER whitelist_notify_delete ON whitelist;
+CREATE TRIGGER whitelist_history_notify_delete AFTER DELETE ON whitelist FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
