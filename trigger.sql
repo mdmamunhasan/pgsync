@@ -24,6 +24,13 @@ CREATE TRIGGER commissions_notify_delete AFTER DELETE ON commissions FOR EACH RO
 DROP TRIGGER retailers_notify_insert ON retailers;
 CREATE TRIGGER retailers_notify_insert AFTER INSERT ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER retailers_notify_update ON retailers;
+CREATE TRIGGER retailers_notify_update AFTER UPDATE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+DROP TRIGGER retailers_notify_delete ON retailers;
+CREATE TRIGGER retailers_notify_delete AFTER DELETE ON retailers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+
+
 DROP TRIGGER activities_notify_delete ON activities;
 CREATE TRIGGER activities_notify_delete AFTER DELETE ON activities FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
