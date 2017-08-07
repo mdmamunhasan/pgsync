@@ -96,8 +96,12 @@ CREATE TRIGGER companies_notify_insert AFTER INSERT ON companies FOR EACH ROW EX
 CREATE TRIGGER companies_notify_update AFTER UPDATE ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER companies_notify_delete AFTER DELETE ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER discount_coupons_notify_insert ON discount_coupons;
 DROP TRIGGER discount_coupons_notify_update ON discount_coupons;
+DROP TRIGGER discount_coupons_notify_delete ON discount_coupons;
+CREATE TRIGGER discount_coupons_notify_insert AFTER INSERT ON discount_coupons FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER discount_coupons_notify_update AFTER UPDATE ON discount_coupons FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER discount_coupons_notify_delete AFTER DELETE ON discount_coupons FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER discount_summary_notify_insert ON discount_summary;
 CREATE TRIGGER discount_summary_notify_insert AFTER INSERT ON discount_summary FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
