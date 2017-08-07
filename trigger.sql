@@ -40,9 +40,9 @@ CREATE TRIGGER age_group_notify_insert AFTER INSERT ON age_group FOR EACH ROW EX
 CREATE TRIGGER age_group_notify_update AFTER UPDATE ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER age_group_notify_delete AFTER DELETE ON age_group FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
-DROP TRIGGER api_access_notify_insert ON members;
-DROP TRIGGER api_access_notify_update ON members;
-DROP TRIGGER api_access_notify_delete ON members;
+DROP TRIGGER api_access_notify_insert ON api_access;
+DROP TRIGGER api_access_notify_update ON api_access;
+DROP TRIGGER api_access_notify_delete ON api_access;
 CREATE TRIGGER api_access_notify_insert AFTER INSERT ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER api_access_notify_update AFTER UPDATE ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER api_access_notify_delete AFTER DELETE ON api_access FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
@@ -182,14 +182,14 @@ CREATE TRIGGER partnership_sms_notify_delete AFTER DELETE ON partnership_sms FOR
 
 DROP TRIGGER partnerships_notify_insert ON partnerships;
 DROP TRIGGER partnerships_notify_update ON partnerships;
-DROP TRIGGER partnerships_notify_update ON partnerships;
+DROP TRIGGER partnerships_notify_delete ON partnerships;
 CREATE TRIGGER partnerships_notify_insert AFTER INSERT ON partnerships FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER partnerships_notify_update AFTER UPDATE ON partnerships FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER partnerships_notify_delete AFTER DELETE ON partnerships FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER payment_methods_notify_insert ON payment_methods;
 DROP TRIGGER payment_methods_notify_update ON payment_methods;
-DROP TRIGGER payment_methods_notify_insert ON payment_methods;
+DROP TRIGGER payment_methods_notify_delete ON payment_methods;
 CREATE TRIGGER payment_methods_notify_insert AFTER INSERT ON payment_methods FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER payment_methods_notify_update AFTER UPDATE ON payment_methods FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER payment_methods_notify_delete AFTER DELETE ON payment_methods FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
