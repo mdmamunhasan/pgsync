@@ -54,20 +54,40 @@ CREATE TRIGGER msisdns_notify_insert AFTER INSERT ON msisdns FOR EACH ROW EXECUT
 CREATE TRIGGER msisdns_notify_update AFTER UPDATE ON msisdns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER msisdns_notify_delete AFTER DELETE ON msisdns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER business_subscribers_notify_insert ON business_subscribers;
 DROP TRIGGER business_subscribers_notify_update ON business_subscribers;
+DROP TRIGGER business_subscribers_notify_delete ON business_subscribers;
+CREATE TRIGGER business_subscribers_notify_insert AFTER INSERT ON business_subscribers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER business_subscribers_notify_update AFTER UPDATE ON business_subscribers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER business_subscribers_notify_delete AFTER DELETE ON business_subscribers FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER campaigns_notify_insert ON campaigns;
+DROP TRIGGER campaigns_notify_update ON campaigns;
+DROP TRIGGER campaigns_notify_delete ON campaigns;
 CREATE TRIGGER campaigns_notify_insert AFTER INSERT ON campaigns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER campaigns_notify_update AFTER UPDATE ON campaigns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER campaigns_notify_delete AFTER DELETE ON campaigns FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER campaigns_log_notify_insert ON campaigns_log;
+DROP TRIGGER campaigns_log_notify_update ON campaigns_log;
 DROP TRIGGER campaigns_log_notify_delete ON campaigns_log;
+CREATE TRIGGER campaigns_log_notify_insert AFTER INSERT ON campaigns_log FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER campaigns_log_notify_update AFTER UPDATE ON campaigns_log FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER campaigns_log_notify_delete AFTER DELETE ON campaigns_log FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER catalog_notify_insert ON catalog;
 DROP TRIGGER catalog_notify_update ON catalog;
+DROP TRIGGER catalog_notify_delete ON catalog;
+CREATE TRIGGER catalog_notify_insert AFTER INSERT ON catalog FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER catalog_notify_update AFTER UPDATE ON catalog FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER catalog_notify_delete AFTER DELETE ON catalog FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER commission_schema_notify_insert ON commission_schema;
+DROP TRIGGER commission_schema_notify_update ON commission_schema;
+DROP TRIGGER commission_schema_notify_delete ON commission_schema;
 CREATE TRIGGER commission_schema_notify_insert AFTER INSERT ON commission_schema FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER commission_schema_notify_update AFTER UPDATE ON commission_schema FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER commission_schema_notify_delete AFTER DELETE ON commission_schema FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER companies_notify_delete ON companies;
 CREATE TRIGGER companies_notify_delete AFTER DELETE ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
