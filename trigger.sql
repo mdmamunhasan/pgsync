@@ -89,7 +89,11 @@ CREATE TRIGGER commission_schema_notify_insert AFTER INSERT ON commission_schema
 CREATE TRIGGER commission_schema_notify_update AFTER UPDATE ON commission_schema FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER commission_schema_notify_delete AFTER DELETE ON commission_schema FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
+DROP TRIGGER companies_notify_insert ON companies;
+DROP TRIGGER companies_notify_update ON companies;
 DROP TRIGGER companies_notify_delete ON companies;
+CREATE TRIGGER companies_notify_insert AFTER INSERT ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
+CREATE TRIGGER companies_notify_update AFTER UPDATE ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 CREATE TRIGGER companies_notify_delete AFTER DELETE ON companies FOR EACH ROW EXECUTE PROCEDURE table_update_notify();
 
 DROP TRIGGER discount_coupons_notify_update ON discount_coupons;
