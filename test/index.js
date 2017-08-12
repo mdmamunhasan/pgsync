@@ -18,8 +18,8 @@ describe('msisdns', function () {
     describe('#save()', function () {
         it('should save without error', function (done) {
 
-            const text = 'INSERT INTO msisdns(id, email) VALUES($1, $2)';
-            const values = [Date.now(), 'mamunthecoder@gmail.com'];
+            const text = 'INSERT INTO msisdns(id, membership_no, msisdn) VALUES($1, $2)';
+            const values = [Date.now(), '+8801747158044' , '8801747158044'];
 
             client.query(text, values, function (err, res) {
                 if (err) {
