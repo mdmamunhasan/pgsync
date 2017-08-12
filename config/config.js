@@ -6,7 +6,7 @@ module.exports = {
     production: 'production',
     development: 'development',
     environment: process.env.NODE_ENV || 'development',
-    db_host: process.env.PGHOST || "172.17.0.1",
+    db_host: process.env.PGHOST || "127.0.0.1",
     db_name: process.env.PGDATABASE || "db_local",
     db_user: process.env.PGUSER || "postgres",
     db_pass: process.env.PGPASSWORD || "root",
