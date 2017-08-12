@@ -3,13 +3,7 @@ var pg = require('pg');
 
 const Client = pg.Client;
 
-const client = new Client({
-    user: config.db_user,
-    host: config.db_host,
-    database: config.db_name,
-    password: config.db_pass,
-    port: config.db_port
-});
+const client = new Client(config.getDBConfig());
 client.connect();
 
 var sync_table_list = config.getSyncTableList();

@@ -12,13 +12,7 @@ AWS.config.update({
 
 var kinesis = new AWS.Kinesis({apiVersion: '2013-12-02'});
 
-const client = new Client({
-    user: config.db_user,
-    host: config.db_host,
-    database: config.db_name,
-    password: config.db_pass,
-    port: config.db_port
-});
+const client = new Client(config.getDBConfig());
 client.connect();
 
 client.on('notification', function (msg) {

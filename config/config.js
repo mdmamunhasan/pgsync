@@ -5,11 +5,6 @@ module.exports = {
     production: 'production',
     development: 'development',
     environment: process.env.NODE_ENV || 'development',
-    db_host: process.env.PGHOST || "127.0.0.1",
-    db_name: process.env.PGDATABASE || "db_local",
-    db_user: process.env.PGUSER || "postgres",
-    db_pass: process.env.PGPASSWORD || "root",
-    db_port: process.env.PGPORT || 5432,
     stream: process.env.NODE_STREAM,
     aws_access_key: process.env.AWS_ACCESS_KEY_ID,
     aws_secret_key: process.env.AWS_SECRET_ACCESS_KEY,
@@ -23,8 +18,22 @@ module.exports = {
     getDBConfig: function () {
         var filename = process.env.SYNC_TABLE_LIST || 'db_config';
         var db_config_file = __dirname + '/' + this.environment + '/' + filename + '.json';
-        console.log(db_config_file);
-        var db_config = JSON.parse(fs.readFileSync(db_config_file, 'utf8'));
+
+        var db_config;
+        if (fs.existsSync(db_config_file)) {
+            console.log(db_config_file);
+            db_config = JSON.parse(fs.readFileSync(db_config_file, 'utf8'));
+        }
+        else{
+            db_config = {
+                user: process.env.PGUSER || "postgres",
+                host: process.env.PGHOST || "127.0.0.1",
+                database: process.env.PGDATABASE || "db_local",
+                password: process.env.PGPASSWORD || "root",
+                port: process.env.PGPORT || 5432
+            }
+        }
+
         return db_config;
     }
 };

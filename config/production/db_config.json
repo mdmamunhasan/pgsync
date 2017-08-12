@@ -1,7 +1,7 @@
 {
-  user: "tcapi_admin",
-  host: "tonic-core-db.ckvp0ck3llgr.ap-southeast-1.rds.amazonaws.com",
-  database: "tcapi_admin",
-  password: "SomeSecretPassword",
-  port: 5432
+  "user": "tcapi_admin",
+  "host": "tonic-core-db.ckvp0ck3llgr.ap-southeast-1.rds.amazonaws.com",
+  "database": "tcapi_admin",
+  "password": "SomeSecretPassword",
+  "port": 5432
 }

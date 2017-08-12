@@ -4,7 +4,7 @@
   "description": "1. NodeJs\r 2. PostgreSql\r 3. Apache Kafka\r 4. Apache Spark",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "test": "mocha --timeout 10000"
   },
   "author": "mamunthecoder@gmail.com",
