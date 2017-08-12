@@ -29,10 +29,10 @@ client.on('notification', function (msg) {
         Object.keys(pl).forEach(function (key) {
             console.log(key, pl[key]);
         });
-        kinesis.addTagsToStream("ok", function (err, data) {
+        /*kinesis.addTagsToStream("ok", function (err, data) {
             if (err) console.log(err, err.stack); // an error occurred
             else     console.log(data);           // successful response
-        });
+        });*/
         console.log("-========-");
     }
 });
