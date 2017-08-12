@@ -4,7 +4,7 @@ var fs = require('fs');
 module.exports = {
     production: 'production',
     development: 'development',
-    environment: process.env.NODE_ENV || 'production',
+    environment: process.env.NODE_ENV || 'development',
     stream: process.env.NODE_STREAM,
     aws_access_key: process.env.AWS_ACCESS_KEY_ID,
     aws_secret_key: process.env.AWS_SECRET_ACCESS_KEY,

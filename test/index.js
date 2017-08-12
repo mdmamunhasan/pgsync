@@ -2,10 +2,9 @@ var config = require('../config/config');
 var assert = require('assert');
 var pg = require('pg');
 
-const Client = pg.Client;
-
-const client = new Client(config.getDBConfig());
-client.connect();
+const Pool = pg.Pool;
+const pool = new Pool(config.getDBConfig());
+pool.connect();
 
 describe('Array', function () {
     describe('#indexOf()', function () {
@@ -18,8 +17,8 @@ describe('Array', function () {
 describe('msisdns', function () {
     describe('#update()', function () {
         it('should update without error', function (done) {
-            const text = "UPDATE msisdns SET msisdn='8811711223171' WHERE id=176;";
-            client.query(text, function (err, res) {
+            const text = "UPDATE msisdns SET msisdn='8811711223171' WHERE id=176";
+            pool.query(text, function (err, res) {
                 if (err) {
                     done(err.stack);
                 } else {
