@@ -36,4 +36,4 @@ pool.on('notification', function (msg) {
     }
 });
 
-client.query("LISTEN table_update");
+pool.query("LISTEN table_update");
