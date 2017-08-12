@@ -15,13 +15,10 @@ describe('Array', function () {
 });
 
 describe('msisdns', function () {
-    describe('#save()', function () {
-        it('should save without error', function (done) {
-
-            const text = 'INSERT INTO msisdns(id, membership_no, msisdn) VALUES($1, $2)';
-            const values = [Date.now(), '+8801747158044' , '8801747158044'];
-
-            client.query(text, values, function (err, res) {
+    describe('#update()', function () {
+        it('should update without error', function (done) {
+            const text = "UPDATE msisdns SET msisdn='8811711223171' WHERE id=176";
+            client.query(text, function (err, res) {
                 if (err) {
                     done(err.stack);
                 } else {
