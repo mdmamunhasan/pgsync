@@ -36,7 +36,7 @@ client.on('notification', function (msg) {
 
         kinesis.putRecords({
             Records: recordData,
-            StreamName: 'test_kinesis_forjs'
+            StreamName: 'pgsync'
         }, function (err, data) {
             if (err) {
                 console.error(err);
