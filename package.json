@@ -2,7 +2,7 @@
   "name": "pgsync",
   "version": "1.0.0",
   "description": "1. NodeJs\r 2. PostgreSql\r 3. Apache Kafka\r 4. Apache Spark",
-  "main": "index.js",
+  "main": "init.js",
   "scripts": {
     "test": "mocha --timeout 10000"
   },
