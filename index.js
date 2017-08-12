@@ -3,7 +3,6 @@ var AWS = require('aws-sdk');
 var pg = require('pg');
 
 const Pool = pg.Pool;
-const Client = pg.Client;
 
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -13,16 +12,16 @@ AWS.config.update({
 
 var kinesis = new AWS.Kinesis({apiVersion: '2013-12-02'});
 
-const client = new Client({
+const pool = new Pool({
     user: config.db_user,
     host: config.db_host,
     database: config.db_name,
     password: config.db_pass,
     port: config.db_port
 });
-client.connect();
+pool.connect();
 
-client.on('notification', function (msg) {
+pool.on('notification', function (msg) {
     if (msg.name === 'notification' && msg.channel === 'table_update') {
         var pl = JSON.parse(msg.payload);
         console.log("*========*");
