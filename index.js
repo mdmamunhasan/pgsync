@@ -15,6 +15,8 @@ var kinesis = new AWS.Kinesis({apiVersion: '2013-12-02'});
 const client = new Client(config.getDBConfig());
 client.connect();
 
+var recordData = [];
+
 client.on('notification', function (msg) {
     console.log("*========*");
     if (msg.name === 'notification' && msg.channel === 'table_update') {
@@ -23,10 +25,24 @@ client.on('notification', function (msg) {
         Object.keys(pl).forEach(function (key) {
             console.log(key, pl[key]);
         });
-        /*kinesis.addTagsToStream("ok", function (err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else     console.log(data);           // successful response
-        });*/
+
+        var record = {
+            Data: JSON.stringify(pl),
+            PartitionKey: 'partition-1'
+        };
+        recordData.push(record);
+
+        console.log(record)
+
+        kinesis.putRecords({
+            Records: recordData,
+            StreamName: 'test_kinesis_forjs'
+        }, function (err, data) {
+            if (err) {
+                console.error(err);
+            }
+        });
+
         console.log("-========-");
     }
 });
