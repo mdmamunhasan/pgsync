@@ -27,7 +27,7 @@ module.exports = {
         else{
             db_config = {
                 user: process.env.PGUSER || "postgres",
-                host: process.env.PGHOST || "127.0.0.1",
+                host: process.env.PGHOST || "172.17.0.1",
                 database: process.env.PGDATABASE || "db_local",
                 password: process.env.PGPASSWORD || "root",
                 port: process.env.PGPORT || 5432
