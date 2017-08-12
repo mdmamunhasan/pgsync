@@ -3,8 +3,8 @@ var pg = require('pg');
 var AWS = require('aws-sdk');
 
 AWS.config.update({
-    accessKeyId: "AKIAJFDJF2NLFLHTWFPA",
-    secretAccessKey: "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",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: "ap-southeast-1"
 });
 

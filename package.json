@@ -1,16 +1,35 @@
 {
   "name": "pgsync",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. NodeJs\r 2. PostgreSql\r 3. Apache Kafka\r 4. Apache Spark",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "mamunthecoder@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.93.0",
-    "kafka-node": "^1.6.1",
-    "pg": "^6.1.5"
-  }
+    "aws-sdk": "^2.97.0",
+    "fs": "0.0.1-security",
+    "kafka-node": "^1.6.2",
+    "mocha": "^3.5.0",
+    "nodemailer": "^4.0.1",
+    "pg": "^6.4.1",
+    "request": "^2.81.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdmamunhasan/pgsync.git"
+  },
+  "keywords": [
+    "pgsync"
+  ],
+  "bugs": {
+    "url": "https://github.com/mdmamunhasan/pgsync/issues"
+  },
+  "homepage": "https://github.com/mdmamunhasan/pgsync#readme"
 }
