@@ -17,6 +17,7 @@ module.exports = {
     getSyncTableList: function () {
         var filename = process.env.SYNC_TABLE_LIST || 'sync_table_list';
         var sync_table_list_file = this.environment + '/' + filename;
-        var obj = JSON.parse(fs.readFileSync(sync_table_list_file, 'utf8'));
+        var sync_table_list = JSON.parse(fs.readFileSync(sync_table_list_file, 'utf8'));
+        return sync_table_list;
     }
 };

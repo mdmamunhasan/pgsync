@@ -1,6 +1,9 @@
 var config = require('./config/config');
-const { Pool, Client } = require('pg');
 var AWS = require('aws-sdk');
+var pg = require('pg');
+
+const Pool = pg.Pool;
+const Client = pg.Client;
 
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
