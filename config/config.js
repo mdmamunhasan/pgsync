@@ -1,5 +1,4 @@
 'use strict';
-
 var fs = require('fs');
 
 module.exports = {
@@ -20,5 +19,12 @@ module.exports = {
         console.log(sync_table_list_file);
         var sync_table_list = JSON.parse(fs.readFileSync(sync_table_list_file, 'utf8'));
         return sync_table_list;
+    },
+    getDBConfig: function () {
+        var filename = process.env.SYNC_TABLE_LIST || 'db_config';
+        var db_config_file = __dirname + '/' + this.environment + '/' + filename + '.json';
+        console.log(db_config_file);
+        var db_config = JSON.parse(fs.readFileSync(db_config_file, 'utf8'));
+        return db_config;
     }
 };
