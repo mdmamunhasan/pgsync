@@ -420,11 +420,11 @@ CREATE INDEX idx_addons_membership_no ON feature_addons USING btree (membership_
 CREATE INDEX idx_campaigns_log_campaign_code ON campaigns_log USING btree (campaign_code);
 CREATE INDEX idx_campaigns_log_campaign_type ON campaigns_log USING btree (campaign_type);
 CREATE INDEX idx_campaigns_log_membership_no ON campaigns_log USING btree (membership_no);
-# CREATE INDEX idx_day_date ON daily_sale_transaction_retailer_self_summary USING btree (day_date);
 CREATE INDEX idx_gin_subscriptions ON profiles USING gin (subscriptions);
 CREATE INDEX idx_membership_type ON members USING btree (membership_type);
-# CREATE INDEX idx_tonic_plus_started_on ON tonic_plus_members_details_last14_days USING btree (tonic_plus_started_on);
 CREATE INDEX members_expr_idx ON members USING btree (((campaign ->> 'campaign_type'::text)));
 CREATE INDEX partnership_sms_date_idx ON partnership_sms USING btree (((requestedon)::date));
 CREATE INDEX retailer_invites_msisdn_idx ON retailer_invites USING btree (msisdn);
 CREATE UNIQUE INDEX unique_rg_check ON monthly_rgcheck USING btree (msisdn, month, year);
+# CREATE INDEX idx_day_date ON daily_sale_transaction_retailer_self_summary USING btree (day_date);
+# CREATE INDEX idx_tonic_plus_started_on ON tonic_plus_members_details_last14_days USING btree (tonic_plus_started_on);
