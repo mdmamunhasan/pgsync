@@ -12,8 +12,7 @@ var trigger_actions = ["insert", "update", "delete"];
 sync_table_list.forEach(function (table) {
     trigger_actions.forEach(function (trigger) {
         var trigger_name = table + '_notify_' + trigger;
-        var drop_trigger_sql = "DROP TRIGGER " + trigger_name + " ON " + table;
-        //var drop_trigger_sql = "DROP TRIGGER IF EXISTS " + trigger_name + " ON " + table;
+        var drop_trigger_sql = "DROP TRIGGER IF EXISTS " + trigger_name + " ON " + table;
         var create_trigger_sql = "CREATE TRIGGER " + trigger_name + " AFTER " + trigger + " ON " + table + " FOR EACH ROW EXECUTE PROCEDURE table_update_notify()";
         client.query(drop_trigger_sql, function (err, res) {
             if (err) {
