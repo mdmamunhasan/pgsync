@@ -34,14 +34,17 @@ client.on('notification', function (msg) {
 
         console.log(record)
 
-        kinesis.putRecords({
+        /*kinesis.putRecords({
             Records: recordData,
             StreamName: 'pgsync'
         }, function (err, data) {
             if (err) {
                 console.error(err);
             }
-        });
+            else {
+                recordData = [];
+            }
+        });*/
 
         console.log("-========-");
     }
