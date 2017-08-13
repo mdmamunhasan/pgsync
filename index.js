@@ -25,7 +25,7 @@ client.on('notification', function (msg) {
 
         var record = {
             Data: JSON.stringify({
-                application: "core",
+                application: config.app_name,
                 timestamp: Date.now(),
                 payload: pl
             }),
