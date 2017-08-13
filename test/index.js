@@ -17,7 +17,7 @@ describe('Array', function () {
 describe('msisdns', function () {
     describe('#insert()', function () {
         it('should insert without error', function (done) {
-            var msisdn = '8801913263343';
+            var msisdn = '1913263343';
             const text = "INSERT INTO msisdns (membership_no,msisdn) VALUES($1, $2)";
             const values = ['Z-' + msisdn + '-1', msisdn];
             client.query(text, values, function (err, res) {
@@ -27,7 +27,7 @@ describe('msisdns', function () {
                     done();
                     describe('#update()', function () {
                         it('should update without error', function (done) {
-                            const text = "UPDATE msisdns SET membership_no='8801534328463' WHERE msisdn='" + msisdn + "'";
+                            const text = "UPDATE msisdns SET membership_no='Z-1534328463-1' WHERE msisdn='" + msisdn + "'";
                             client.query(text, function (err, res) {
                                 if (err) {
                                     done(err.stack);
