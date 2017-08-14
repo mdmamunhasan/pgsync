@@ -5,8 +5,8 @@ var pg = require('pg');
 const Client = pg.Client;
 
 AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: config.aws_access_key,
+    secretAccessKey: config.aws_secret_key,
     region: "ap-southeast-1"
 });
 
@@ -22,21 +22,22 @@ client.on('notification', function (msg) {
     if (msg.name === 'notification' && msg.channel === 'table_update') {
         var pl = JSON.parse(msg.payload);
         console.log("*========*");
-        Object.keys(pl).forEach(function (key) {
-            console.log(key, pl[key]);
-        });
 
         var record = {
-            Data: JSON.stringify(pl),
+            Data: JSON.stringify({
+                application: config.app_name,
+                timestamp: Date.now(),
+                payload: pl
+            }),
             PartitionKey: 'partition-1'
         };
         recordData.push(record);
 
         console.log(record)
 
-        /*kinesis.putRecords({
+        kinesis.putRecords({
             Records: recordData,
-            StreamName: 'pgsync'
+            StreamName: config.stream_name
         }, function (err, data) {
             if (err) {
                 console.error(err);
@@ -44,7 +45,7 @@ client.on('notification', function (msg) {
             else {
                 recordData = [];
             }
-        });*/
+        });
 
         console.log("-========-");
     }

@@ -4,8 +4,9 @@ var fs = require('fs');
 module.exports = {
     production: 'production',
     development: 'development',
-    environment: process.env.NODE_ENV || 'production',
-    stream: process.env.NODE_STREAM,
+    environment: process.env.NODE_ENV || 'development',
+    app_name: process.env.APP_NAME || 'core',
+    stream_name: process.env.STREAM_NAME || 'pgsync',
     aws_access_key: process.env.AWS_ACCESS_KEY_ID,
     aws_secret_key: process.env.AWS_SECRET_ACCESS_KEY,
     getSyncTableList: function () {
