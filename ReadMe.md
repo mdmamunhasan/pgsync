@@ -27,7 +27,7 @@ docker run -d --name  pgsync -p 8001:80 -e NODE_ENV='development' -e APP_NAME='c
 9. Then enter docker container pgsync by ```docker exec -it pgsync bash``` 
 10. And within docker container run ```node trigger.js``` which will create necessary triggers in the database for the tables listed in config/development/sync_table_list.json
 11. Finally check your setup by run ```npm test``` within container. If evrything changed data passed then data passed to kinesis.
-12. Follow the same process for NODE_ENV='production' also
+12. Follow the same process for NODE_ENV='production' also and create a start.sh file.
 
 ## Lamda Function
 
