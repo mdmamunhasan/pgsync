@@ -7,6 +7,11 @@ const client = new Client(config.getDBConfig());
 client.connect();
 
 var sync_table_list = config.getSyncTableList();
+if(!sync_table_list){
+    console.log("No table found!");
+    return;
+}
+
 var trigger_actions = ["insert", "update", "delete"];
 
 sync_table_list.forEach(function (table) {

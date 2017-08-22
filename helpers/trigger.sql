@@ -3,11 +3,12 @@ DECLARE
   id bigint;
 BEGIN
   IF TG_OP = 'INSERT' OR TG_OP = 'UPDATE' THEN
-    id = NEW.id;
+    PERFORM pg_notify('table_update', json_build_object('table', TG_TABLE_NAME, TG_OP, NEW)::text);
   ELSE
     id = OLD.id;
+    PERFORM pg_notify('table_update', json_build_object('table', TG_TABLE_NAME, TG_OP, id)::text);
   END IF;
-  PERFORM pg_notify('table_update', json_build_object('table', TG_TABLE_NAME, 'id', id, 'type', TG_OP)::text);
+
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
