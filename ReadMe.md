@@ -31,12 +31,6 @@ docker run -d --name  pgsync -p 8001:80 -e NODE_ENV='development' -e DB_NAME='co
 11. Finally check your setup by run ```npm test``` within container. If evrything changed data passed then data passed to kinesis.
 12. Follow the same process for NODE_ENV='production' also
 
-pgSync is deployed to the server:
-
-ec2-52-221-223-222.ap-southeast-1.compute.amazonaws.com
-
-It is running using docker.
-
 ## Lamda Function
 
 Format for insert payload
