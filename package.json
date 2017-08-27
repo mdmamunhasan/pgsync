@@ -10,7 +10,9 @@
   "author": "mamunthecoder@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "aws-sdk": "^2.97.0",
+    "dotenv": "^4.0.0",
     "fs": "0.0.1-security",
     "kafka-node": "^1.6.2",
     "mocha": "^3.5.0",

@@ -5,6 +5,7 @@
 3. Kinesis
 4. Docker
 5. Lamda
+6. Apache Spark
 
 ## Installation
 
@@ -30,12 +31,29 @@ docker run -d --name  pgsync -p 8001:80 -e NODE_ENV='development' -e DB_NAME='co
 11. Finally check your setup by run ```npm test``` within container. If evrything changed data passed then data passed to kinesis.
 12. Follow the same process for NODE_ENV='production' also
 
+pgSync is deployed to the server:
+
+ec2-52-221-223-222.ap-southeast-1.compute.amazonaws.com
+
+It is running using docker.
+
 ## Lamda Function
 
 Format for insert payload
 
     {
-        "table": "core_msisdns",
+        "table": "msisdns",
+        "INSERT": {
+            "id": 27,
+            "membership_no": "Z-1913263343-1",
+            "msisdn": "1913263343"
+        }
+    }
+    
+modified for kinesis
+    
+    {
+        "table": "table_core_msisdns",
         "timestamp": 1503171224170,
         "operation": "insert",
         "payload": {
@@ -48,7 +66,7 @@ Format for insert payload
 Format for update payload
 
     {
-        "table": "core_msisdns",
+        "table": "table_core_msisdns",
         "timestamp": 1503171224178,
         "operation": "update",
         "payload": {
@@ -61,10 +79,52 @@ Format for update payload
 Format for delete payload
 
     {
-        "table": "core_msisdns",
+        "table": "table_core_msisdns",
         "timestamp": 1503171224188,
         "operation": "delete",
         "payload": {
             "id": 37699
         }
     }
+    
+We have build the function using two language. But the python one works well.
+    
+### pyPgSync: Python
+
+The directory pyPgSync contains lamda function. Zip it internal content not the folder and upload in aws lamda.
+
+It uses the following environmental variables: 
+
+PGHOST=[Database Host]<br/>
+PGUSER=[Database User]<br/>
+PGPASSWORD=[Database Password]<br/>
+PGDATABASE=[Database Name]<br/>
+PGPORT=[Database Port]<br/> 
+
+To test it in local execute 
+
+    python lmdtest.py
+    
+### ndPgSync: NodeJS
+
+The directory pgSyncLamda contains lamda function. Zip it internal content not the folder and upload in aws lamda.
+
+The zip must contains following files and directory:
+
+1. node_modules
+2. index.js
+3. helper.js
+4. .env
+5. package.json
+
+.env must set follwing environmental variables
+
+PGHOST=[Database Host]<br/>
+PGUSER=[Database User]<br/>
+PGPASSWORD=[Database Password]<br/>
+PGDATABASE=[Database Name]<br/>
+PGPORT=[Database Port]<br/>
+
+To test it in local execute 
+
+    node lmdtest.js

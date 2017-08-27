@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea/*
-node_modules/*
+.idea
+node_modules
 config/production/db_config.json
 start.sh
 startdev.sh

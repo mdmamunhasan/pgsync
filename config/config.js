@@ -1,23 +1,31 @@
 'use strict';
+
 var fs = require('fs');
 
 module.exports = {
     production: 'production',
     development: 'development',
     environment: process.env.NODE_ENV || 'development',
-    app_name: process.env.APP_NAME || 'core',
+    app_db_name: process.env.DB_NAME || 'core',
     stream_name: process.env.STREAM_NAME || 'pgsync',
     aws_access_key: process.env.AWS_ACCESS_KEY_ID,
     aws_secret_key: process.env.AWS_SECRET_ACCESS_KEY,
     getSyncTableList: function () {
-        var filename = process.env.SYNC_TABLE_LIST || 'sync_table_list';
+        var filename = 'sync_table_list_' + this.app_db_name;
         var sync_table_list_file = __dirname + '/' + this.environment + '/' + filename + '.json';
-        console.log(sync_table_list_file);
-        var sync_table_list = JSON.parse(fs.readFileSync(sync_table_list_file, 'utf8'));
-        return sync_table_list;
+        if (fs.existsSync(sync_table_list_file)) {
+            console.log(sync_table_list_file);
+            var sync_table_list = JSON.parse(fs.readFileSync(sync_table_list_file, 'utf8'));
+            return sync_table_list;
+        }
+        return false;
     },
-    getDBConfig: function () {
-        var filename = process.env.SYNC_TABLE_LIST || 'db_config';
+    getDBConfig: function (is_central) {
+        var filename = 'db_config';
+        var app_db_name = this.app_db_name;
+        if(app_db_name.length > 0 && !is_central){
+            filename = filename + '_' + app_db_name;
+        }
         var db_config_file = __dirname + '/' + this.environment + '/' + filename + '.json';
 
         var db_config;

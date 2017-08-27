@@ -1,23 +1,18 @@
 var config = require('../config/config');
-var assert = require('assert');
 var pg = require('pg');
 
+// PostGreSql Connection
+
 const Client = pg.Client;
+
 const client = new Client(config.getDBConfig());
 client.connect();
 
-describe('Array', function () {
-    describe('#indexOf()', function () {
-        it('should return -1 when the value is not present', function () {
-            assert.equal(-1, [1, 2, 3].indexOf(4));
-        });
-    });
-});
-
+// Test Start
 describe('msisdns', function () {
     describe('#insert()', function () {
         it('should insert without error', function (done) {
-            var msisdn = '1913263343';
+            var msisdn = '1913263346';
             const text = "INSERT INTO msisdns (membership_no,msisdn) VALUES($1, $2)";
             const values = ['Z-' + msisdn + '-1', msisdn];
             client.query(text, values, function (err, res) {
@@ -54,5 +49,6 @@ describe('msisdns', function () {
         });
     });
 });
+
 
 

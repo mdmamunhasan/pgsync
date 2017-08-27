@@ -1,4 +1,4 @@
-var config = require('./config/config');
+var config = require('../config/config');
 var pg = require('pg');
 
 const Client = pg.Client;

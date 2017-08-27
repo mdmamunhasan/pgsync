@@ -2,7 +2,7 @@ var config = require('./config/config');
 var AWS = require('aws-sdk');
 var pg = require('pg');
 
-const Client = pg.Client;
+// AWS Kinesis
 
 AWS.config.update({
     accessKeyId: config.aws_access_key,
@@ -12,40 +12,69 @@ AWS.config.update({
 
 var kinesis = new AWS.Kinesis({apiVersion: '2013-12-02'});
 
+// PostGreSql Connection
+
+const Client = pg.Client;
+
 const client = new Client(config.getDBConfig());
 client.connect();
 
-var recordData = [];
+// PostGreSql Notification
 
 client.on('notification', function (msg) {
+    var recordData = [];
+
     console.log("*========*");
     if (msg.name === 'notification' && msg.channel === 'table_update') {
-        var pl = JSON.parse(msg.payload);
+        const pl = JSON.parse(msg.payload);
         console.log("*========*");
 
-        var record = {
-            Data: JSON.stringify({
-                application: config.app_name,
-                timestamp: Date.now(),
-                payload: pl
-            }),
-            PartitionKey: 'partition-1'
-        };
-        recordData.push(record);
-
-        console.log(record)
-
-        kinesis.putRecords({
-            Records: recordData,
-            StreamName: config.stream_name
-        }, function (err, data) {
-            if (err) {
-                console.error(err);
+        if (typeof(pl) == "object" && "table" in pl) {
+            var data = {
+                table: "table_" + config.app_db_name + '_' + pl.table,
+                timestamp: Date.now()
+            };
+            if ("INSERT" in pl) {
+                data["operation"] = "insert";
+                data["payload"] = pl.INSERT;
+            }
+            else if ("UPDATE" in pl) {
+                data["operation"] = "update";
+                data["payload"] = pl.UPDATE;
+            }
+            else if ("DELETE" in pl) {
+                data["operation"] = "delete";
+                data["payload"] = {
+                    id: pl.DELETE
+                };
             }
             else {
-                recordData = [];
+                data = false;
             }
-        });
+
+            if (data) {
+                var record = {
+                    Data: JSON.stringify(data),
+                    PartitionKey: 'partition-1'
+                };
+                recordData.push(record);
+            }
+        }
+
+        if (recordData.length > 0) {
+            kinesis.putRecords({
+                Records: recordData,
+                StreamName: config.stream_name
+            }, function (err, data) {
+                if (err) {
+                    console.error(err);
+                }
+                else {
+                    console.log(recordData);
+                    recordData = [];
+                }
+            });
+        }
 
         console.log("-========-");
     }
